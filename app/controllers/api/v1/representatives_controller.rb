@@ -1,4 +1,4 @@
-class RepresentativesController < ApplicationController
+class Api::V1::RepresentativesController < ApplicationController
   def show
    url = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{zipcode}&key=API_KEY"
    response = HTTParty.get(url)
