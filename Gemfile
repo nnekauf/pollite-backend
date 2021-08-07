@@ -27,6 +27,7 @@ gem 'dotenv-rails'
 gem "pry"
 gem "httparty"
 gem 'active_model_serializers'
+gem 'rack-cors'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

@@ -33,6 +33,7 @@ class Api::V1::RepresentativesController < ApplicationController
   # render json: response
   #  # I left off by commenting out the route and trying to set up the controller action to successfully call the api with the zip code parameter provided by the front end
   end
+  
 private
   def representative_params
 
