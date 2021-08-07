@@ -21,10 +21,11 @@ class Api::V1::RepresentativesController < ApplicationController
   # name = response["offices"].map {|n| n["name"]}
   # person = response["offices"].map {|p| p.map {|k, v| k v if k == "name" || k == "officialIndices"}}
   # offices = {name:name, index: index}
-  officials = response["officials"]
+  officials = response["officials"].map{|o| o["name"]}
   # binding.pry
   # person = 
-  render json: {city: city, state: state, zipcode: zip, officials: officials}
+  # render json: {city: city, state: state, zipcode: zip, officials: officials}
+  render json: officials
   # binding.pry
 
   # response = HTTParty.get("https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{params[:id]}&key=#{ENV["API_KEY"]}",
