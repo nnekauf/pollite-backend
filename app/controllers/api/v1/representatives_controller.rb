@@ -9,8 +9,9 @@ class Api::V1::RepresentativesController < ApplicationController
 
   def show
   # binding.pry
-  url = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{params[:zipcode]}&key=#{ENV["API_KEY"]}"
+  url = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{params[:id]}&key=#{ENV["API_KEY"]}"
   response = HTTParty.get(url)
+  binding.pry
   city = response["normalizedInput"]["city"]
   state = response["normalizedInput"]["state"]
   zip = response["normalizedInput"]["zip"]
@@ -38,6 +39,6 @@ class Api::V1::RepresentativesController < ApplicationController
 private
   def representative_params
 
-    params.require(:representative). permit(:zipcode)
+    params.require(:representative). permit(:zipcode, :id)
   end
 end
