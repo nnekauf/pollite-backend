@@ -11,7 +11,7 @@ class Api::V1::RepresentativesController < ApplicationController
   # binding.pry
   url = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{params[:id]}&key=#{ENV["API_KEY"]}"
   response = HTTParty.get(url)
-  binding.pry
+  # binding.pry
   city = response["normalizedInput"]["city"]
   state = response["normalizedInput"]["state"]
   zip = response["normalizedInput"]["zip"]
@@ -20,14 +20,20 @@ class Api::V1::RepresentativesController < ApplicationController
   # find the official whose index number equals the officvialindices value within the offices array
   # index = response["offices"].map {|n| n["officialIndices"]}
   # name = response["offices"].map {|n| n["name"]}
+  offices = {}
+  response["offices"].map {|n| offices[n["name"]] = n["officialIndices"]}
+  # response["officials"].map{|o| o["name"]}
+  # name = response["offices"].map {|n| n["name"]}
   # person = response["offices"].map {|p| p.map {|k, v| k v if k == "name" || k == "officialIndices"}}
-  # offices = {name:name, index: index}
+  # offices = {name: name, indicies: index}
+  
   officials = response["officials"].map{|o| o["name"]}
   # binding.pry
   # person = 
   # render json: {city: city, state: state, zipcode: zip, officials: officials}
-  render json: officials
-  # binding.pry
+  # render json: officials
+  render json: {officials: officials, city: city, state: state, zipcode: zip}
+  binding.pry
 
   # response = HTTParty.get("https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=#{params[:id]}&key=#{ENV["API_KEY"]}",
   #   :body { :officers}
